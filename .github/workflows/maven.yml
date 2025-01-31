@@ -7,18 +7,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         # test against several Java versions:
-        java: [ 8 , 11 ]
-    name: Build with Java ${{ matrix.java }}
+        # java: [ 8 , 11 ]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Build with Java on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK ${{ matrix.java }}
+    - name: Set up JDK 8
       uses: actions/setup-java@v1
       with:
-       java-version: ${{ matrix.java }}
+       java-version: 8
     - name: Cache maven packages
       uses: actions/cache@v2
       with:
