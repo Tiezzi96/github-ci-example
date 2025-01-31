@@ -31,7 +31,8 @@ jobs:
         clean verify
         surefire-report:report-only site:site -DgenerateReports=false
     - name: Archive Junit Report
-      uses: actions/upload-artifact@v2
+      # actions/upload-artifact@v2 is deprecated version 
+      uses: actions/upload-artifact@v4
       with:
        name: Surefire-report-with-jdk-${{ matrix.java }}
        path: '**/target/site'
