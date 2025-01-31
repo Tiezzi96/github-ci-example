@@ -13,7 +13,7 @@ jobs:
         # test against several OSes:
         os: [ubuntu-latest, windows-latest, macos-latest]
         java: [ 8 ]
-		include:
+        include:
         # includes JDK 11 on Linux
         - os: ubuntu-latest
           java: 11
