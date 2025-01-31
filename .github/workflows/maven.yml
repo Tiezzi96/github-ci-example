@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-	runs-on: ubuntu-lasest
+    runs-on: ubuntu-lasest
 		
 	steps:
 	- uses: actions/checkout@v2
