@@ -31,7 +31,7 @@ jobs:
         clean verify
         surefire-report:report-only site:site -DgenerateReports=false
       # function always() always return true. In this way, the maven build terminates also if it failed.
-      if : ${{ always() }}
+      if: ${{ always() }}
     - name: Archive Junit Report
       # actions/upload-artifact@v2 is deprecated version 
       uses: actions/upload-artifact@v4
