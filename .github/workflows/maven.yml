@@ -29,6 +29,9 @@ jobs:
       run: >
         mvn -f myproject-ci/pom.xml
         clean verify
+    - name: Generate JUnit Report
+      run: >
+        mvn -f myproject-ci/pom.xml 
         surefire-report:report-only site:site -DgenerateReports=false
       # function always() always return true. In this way, the maven build terminates also if it failed.
       if: ${{ always() }}
