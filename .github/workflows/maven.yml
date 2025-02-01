@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      workdir: myproject-ci
     strategy:
       matrix:
         # test against several Java versions:
@@ -33,15 +35,17 @@ jobs:
        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml', '**/*.yml') }}
        restore-keys: ${{ runner.os }}-m2-
     - name: Build with Maven
+      # removed clean because in workflow is useless
+      # removed '-f myproject-ci/pom.xml' when 'working_directory' is set 
       run: >
-        mvn -f myproject-ci/pom.xml
-        clean verify ${{ matrix.additional-maven-args }}
+        mvn verify ${{ matrix.additional-maven-args }}
+      working-directory: ${{ env.workdir }}
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
     - name: Generate JUnit Report
       run: >
-        mvn -f myproject-ci/pom.xml 
-        surefire-report:report-only site:site -DgenerateReports=false
+        mvn surefire-report:report-only site:site -DgenerateReports=false
+      working-directory: ${{ env.workdir }}
       # function always() always return true. In this way, the maven build terminates also if it failed.
       if: ${{ always() }}
     - name: Archive Junit Report
