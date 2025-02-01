@@ -33,7 +33,7 @@ jobs:
         mvn -f myproject-ci/pom.xml
         clean verify ${{ matrix.additional-maven-args }}
       env:
-        CAVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
     - name: Generate JUnit Report
       run: >
         mvn -f myproject-ci/pom.xml 
