@@ -15,11 +15,11 @@ jobs:
         # test against several Java versions:
         include:
           - java: 8
+            # 'coveralls:report' and '-Pjacoco' removed for the new profile 'coveralls'
             additional-maven-args: > 
-              -Pjacoco 
+              -Pcoveralls 
               -DrepoToken=$COVERALLS_REPO_TOKEN
               -DpullRequest=${{ github.event.pull_request.number }} 
-              coveralls:report
           - java: 11
     name: Build with Java ${{ matrix.java }} on Linux
     steps:
