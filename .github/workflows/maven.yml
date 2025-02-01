@@ -45,6 +45,8 @@ jobs:
       with:
        name: Surefire-report-with-jdk-${{ matrix.java }}
        path: '**/target/site'
+    - name: Archive Jacoco directory
+      uses: actions/upload-artifact@v4
       if: ${{eq(matrix.additional-maven-args, '-Pjacoco')}}
       with:
        name: Jacoco-report-with-jdk-${{ matrix.java }}
