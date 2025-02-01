@@ -45,3 +45,7 @@ jobs:
       with:
        name: Surefire-report-with-jdk-${{ matrix.java }}
        path: '**/target/site'
+      if: ${{eq(matrix.additional-maven-args, '-Pjacoco')}}
+      with:
+       name: Jacoco-report-with-jdk-${{ matrix.java }}
+       path: '**/target/site/jacoco'
